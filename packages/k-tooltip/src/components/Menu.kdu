@@ -1,0 +1,9 @@
+<script>
+import PopperWrapper from './PopperWrapper.kdu'
+
+export default {
+  ...PopperWrapper,
+  name: 'KMenu',
+  kPopperTheme: 'menu',
+}
+</script>

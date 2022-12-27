@@ -1,0 +1,15 @@
+{
+  "name": "k-tooltip-monorepo",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "lerna run build --ignore demo",
+    "release": "lerna publish"
+  },
+  "devDependencies": {
+    "lerna": "^3.22.1"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "name": "demo",
+  "version": "3.0.0-alpha.20",
+  "private": true,
+  "scripts": {
+    "serve": "kdu-cli-service serve",
+    "build": "kdu-cli-service build",
+    "lint": "kdu-cli-service lint"
+  },
+  "dependencies": {
+    "core-js": "^3.8.1",
+    "k-tooltip": "^3.0.0-alpha.20",
+    "kdu": "^2.6.14",
+    "kdu-router": "^3.0.1",
+    "screenfull": "^4.2.0"
+  },
+  "devDependencies": {
+    "@kdujs/cli-plugin-babel": "^4.0.0",
+    "@kdujs/cli-plugin-eslint": "^4.0.0",
+    "@kdujs/cli-service": "^4.0.0",
+    "@kdujs/eslint-config-standard": "^6.1.1",
+    "eslint": "^7.16.0",
+    "faker": "^4.1.0",
+    "highlight.js": "^9.7.0",
+    "kdu-template-compiler": "^2.6.14",
+    "sass": "^1.18.0",
+    "sass-loader": "^7.1.0"
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "root": true
+}

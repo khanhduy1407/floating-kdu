@@ -1,0 +1,153 @@
+<template>
+  <div
+    :id="popperId"
+    ref="popover"
+    class="k-popper__popper"
+    :class="[
+      themeClass,
+      {
+        'k-popper__popper--shown': shown,
+        'k-popper__popper--hidden': !shown,
+        'k-popper__popper--show-from': classes.showFrom,
+        'k-popper__popper--show-to': classes.showTo,
+        'k-popper__popper--hide-from': classes.hideFrom,
+        'k-popper__popper--hide-to': classes.hideTo,
+        'k-popper__popper--skip-transition': skipTransition,
+      },
+    ]"
+    :aria-hidden="shown ? 'false' : 'true'"
+    :tabindex="autoHide ? 0 : undefined"
+    @keyup.esc="autoHide && $emit('hide')"
+  >
+    <div class="k-popper__wrapper">
+      <div
+        ref="inner"
+        class="k-popper__inner"
+      >
+        <template k-if="mounted">
+          <div>
+            <slot />
+          </div>
+
+          <ResizeObserver
+            k-if="handleResize"
+            @notify="$emit('resize', $event)"
+          />
+        </template>
+      </div>
+
+      <div
+        ref="arrow"
+        class="k-popper__arrow-container"
+      >
+        <div class="k-popper__arrow" />
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import { ResizeObserver } from 'kdu-resize'
+import ThemeClass from './ThemeClass'
+
+export default {
+  name: 'KPopperContent',
+
+  components: {
+    ResizeObserver,
+  },
+
+  mixins: [
+    ThemeClass,
+  ],
+
+  props: {
+    popperId: String,
+    theme: String,
+    shown: Boolean,
+    mounted: Boolean,
+    skipTransition: Boolean,
+    autoHide: Boolean,
+    handleResize: Boolean,
+    classes: Object,
+  },
+}
+</script>
+
+<style>
+.k-popper__popper {
+  z-index: 10000;
+}
+
+.k-popper__popper.k-popper__popper--hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .15s, visibility .15s;
+}
+
+.k-popper__popper.k-popper__popper--shown {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity .15s;
+}
+
+.k-popper__popper.k-popper__popper--skip-transition,
+.k-popper__popper.k-popper__popper--skip-transition > .k-popper__wrapper {
+  transition: none !important;
+}
+
+.k-popper__inner {
+  position: relative;
+}
+
+.k-popper__arrow-container {
+  width: 10px;
+  height: 10px;
+}
+
+.k-popper__arrow {
+  border-style: solid;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+.k-popper__popper[data-popper-placement^="top"] .k-popper__arrow {
+  border-width: 5px 5px 0 5px;
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+  border-bottom-color: transparent !important;
+}
+
+.k-popper__popper[data-popper-placement^="bottom"] .k-popper__arrow-container {
+  top: 0;
+}
+
+.k-popper__popper[data-popper-placement^="bottom"] .k-popper__arrow {
+  border-width: 0 5px 5px 5px;
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+  border-top-color: transparent !important;
+  top: -5px;
+}
+
+.k-popper__popper[data-popper-placement^="right"] .k-popper__arrow {
+  border-width: 5px 5px 5px 0;
+  border-left-color: transparent !important;
+  border-top-color: transparent !important;
+  border-bottom-color: transparent !important;
+  left: -5px;
+}
+
+.k-popper__popper[data-popper-placement^="left"] .k-popper__arrow-container {
+  right: -5px;
+}
+
+.k-popper__popper[data-popper-placement^="left"] .k-popper__arrow {
+  border-width: 5px 0 5px 5px;
+  border-top-color: transparent !important;
+  border-right-color: transparent !important;
+  border-bottom-color: transparent !important;
+  right: -5px;
+}
+</style>

@@ -1,0 +1,38 @@
+<template>
+  <div class="box">
+    <KMenu
+      :offset="[0, 16]"
+      placement="right"
+    >
+      <button class="tooltip-target b1 popover-btn">Target</button>
+
+      <template #popper>
+        Hello
+      </template>
+    </KMenu>
+
+    <KDropdown
+      :triggers="['hover']"
+      :offset="[0, 16]"
+      :auto-hide="false"
+      placement="right"
+    >
+      <span>Simple text</span>
+
+      <template #popper>
+        Hello
+      </template>
+    </KDropdown>
+  </div>
+</template>
+
+<style lang="postcss" scoped>
+.box {
+  padding: 24px;
+}
+
+.k-popper {
+  margin-left: 0;
+  margin-right: 0;
+}
+</style>

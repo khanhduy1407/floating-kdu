@@ -1,0 +1,23 @@
+<script>
+import PopperWrapper from './PopperWrapper.kdu'
+
+export default {
+  ...PopperWrapper,
+  name: 'KDropdown',
+  kPopperTheme: 'dropdown',
+}
+</script>
+
+<style>
+.k-popper--theme-dropdown .k-popper__inner {
+  background: #fff;
+  color: black;
+  padding: 24px;
+  border-radius: 6px;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, .1);
+}
+
+.k-popper--theme-dropdown .k-popper__arrow {
+  border-color: #fff;
+}
+</style>
